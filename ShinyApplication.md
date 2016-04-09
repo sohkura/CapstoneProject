@@ -55,7 +55,7 @@ The prediction algorithm was developed in the following steps:
 
 5. Now we have a list of candidate words for 3-words, 2-words, or 1-word. For each case, calculate the interpolated probability for each candidate of the next prediction word as follows:
 
-- Case for 3-word = 1/4*P(4-gram) + 1/4*P(3-gram) + 1/4*(P(2-gram) + 1/4*P(1-gram)
+- Case for 3-word = 1/4*P(4-gram) + 1/4*P(3-gram) + 1/4*P(2-gram) + 1/4*P(1-gram)
 - Case for 2-word = 1/3*P(3-gram) + 1/3*P(2-gram) + 1/3*P(1-gram)
 - Case for 1-word = 1/2*P(2-gram) + 1/2P(1-gram)
 
@@ -75,7 +75,8 @@ There was a challenge to deoply the training data set and the associated code, u
 
 The majority of the code was implemented in the server.R. The ui.R is very simple and standard to get the text as input and show the result to the screen. 
 
-Logic in server.R
+Logic in server.R:
+
 1. load the training data set for 1-gram, 2-gram, 3-gram and 4-gram. 
 2. Change the input text to lower case
 3. Parse the text into a sequence of words
