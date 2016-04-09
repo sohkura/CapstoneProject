@@ -35,10 +35,10 @@ Due to the laptop constraints, 4 tables were created for each 1-gram, 2-gram, 3-
 
 The probability was calculated in the following:
 
-1-gram table: p(w) = count(w)/total_number_of_tokens
-2-gram table: P(w | w-1) = count(w-1, w)/count(w -1)
-3-gram table: p(w | w-2, w-1) = count(w-2, w-1, w)/count(w-2, w-1)
-4-gram table: p(w | w-3, w-2, w-1) = count(w-3, w-2, w-1, w)/count(w-3, w-2, w-1)
+1. 1-gram table: p(w) = count(w)/total_number_of_tokens
+2. 2-gram table: P(w | w-1) = count(w-1, w)/count(w -1)
+3. 3-gram table: p(w | w-2, w-1) = count(w-2, w-1, w)/count(w-2, w-1)
+4. 4-gram table: p(w | w-3, w-2, w-1) = count(w-3, w-2, w-1, w)/count(w-3, w-2, w-1)
 
 Prediction Algorithm 
 ========================================================
@@ -55,11 +55,11 @@ The prediction algorithm was developed in the following steps:
 
 5. Now we have a list of candidate words for 3-words, 2-words, or 1-word. For each case, calculate the interpolated probability for each candidate of the next prediction word as follows:
 
-Case for 3-word = 1/4*P(4-gram) + 1/4*P(3-gram) + 1/4*(P(2-gram) + 1/4*P(1-gram)
-Case for 2-word = 1/3*P(3-gram) + 1/3*P(2-gram) + 1/3*P(1-gram)
-Case for 1-word = 1/2*P(2-gram) + 1/2P(1-gram)
+- Case for 3-word = 1/4*P(4-gram) + 1/4*P(3-gram) + 1/4*(P(2-gram) + 1/4*P(1-gram)
+- Case for 2-word = 1/3*P(3-gram) + 1/3*P(2-gram) + 1/3*P(1-gram)
+- Case for 1-word = 1/2*P(2-gram) + 1/2P(1-gram)
 
-At this point, each candidate of the next prediction word is assigned the interpolated probabilitiy. 
+6. At this point, each candidate of the next prediction word is assigned the interpolated probabilitiy. 
 
 6. Identify the word whose interpolated probability is the highest from the Case for 3-word. if not found, perform backoff to the Case for 2-word, if not found, perform backoff the Case for 1-word, if none, pick a word from the top 12 words.  
 
@@ -76,17 +76,17 @@ There was a challenge to deoply the training data set and the associated code, u
 The majority of the code was implemented in the server.R. The ui.R is very simple and standard to get the text as input and show the result to the screen. 
 
 Logic in server.R
-1) load the training data set for 1-gram, 2-gram, 3-gram and 4-gram. 
-2) Change the input text to lower case
-3) Parse the text into a sequence of words
-4) Pass a sequence of words (3 or 2 or 1 word) to the prediction function
-5) Identify a word based on the prediction algorithm 
-6) Return a word to the ui.R
+1. load the training data set for 1-gram, 2-gram, 3-gram and 4-gram. 
+2. Change the input text to lower case
+3. Parse the text into a sequence of words
+4. Pass a sequence of words (3 or 2 or 1 word) to the prediction function
+5. Identify a word based on the prediction algorithm 
+6. Return a word to the ui.R
 
 Conclusion
 ========================================================
 
-It was tough and spent a lot of time at the beginning partly because I need to process a large data set that my lap top could not handle and that I don't have knowledge  about the natural language processing fundamentals. However it was fun at the end. I hope you enjoy the Shiny tool.
+It was tough and spent a lot of time at the beginning partly because I need to process a large data set that my lap top could not handle and that I don't have knowledge  about the natural language processing fundamentals. However it was fun at the end. Thank you for reading. I hope you enjoy the Shiny tool.
 
 The End.
 
